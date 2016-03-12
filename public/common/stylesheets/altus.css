@@ -1,0 +1,234 @@
+body {
+	-webkit-font-smoothing: antialiased;
+}
+
+input[type=text], input[type=search] {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 4px 6px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	color: #555;
+	transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+
+input[readonly],
+select[readonly],
+textarea[readonly] {
+	cursor: not-allowed;
+	background-color: #eeeeee;
+}
+
+input[type="radio"][readonly],
+input[type="checkbox"][readonly] {
+	background-color: transparent;
+}
+
+.modal-xlg {
+	width: 80%;
+}
+
+.modal-xxlg {
+	width: 90%;
+}
+
+.modal-body .row {
+	margin: 0;
+}
+
+.tooltip-inner {
+	max-width: 250px;
+}
+
+.topbanner {	
+	border-radius: 4px;
+	margin: 10px 0 20px;
+}
+
+.topbanner h1 {
+	font-weight: 300;
+	font-size: 32px;
+	margin: 0;
+}
+
+.topbanner .btn {
+	margin-top: 10px;
+}
+
+.btn-primary i[class^="fa-"] {
+	color: #FFF;
+}
+
+.nav-tabs input[type=text] {
+	margin-bottom: 0;
+}
+
+.spinner.large, .spinner.large.static {
+	font-size: 5em;
+	z-index: 1;
+	position: fixed;
+	left: 50%;
+	top: 40%;	
+}
+
+.spinner.large.static {
+	position: static;
+	text-align: center;
+}
+
+.myfavicon {
+  padding: 0 10px 2px 10px;
+  font-size: 18px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+[class^="icon-star"].icon-2:before, 
+[class*=" icon-star"].icon-2:before {
+	content: "\f005";
+	color: gold;
+}
+
+[class^="icon-star"].icon-2.fav:before, 
+[class*=" icon-star"].icon-2.fav:before {
+	content: "\f005";
+	color: gold;
+}
+
+[class^="icon-star"].icon-2.unfav:before,
+[class*=" icon-star"].icon-2.unfav:before {
+	content: "\f006";
+	color: gold;
+}
+
+[class^="fa-question"], [class*=" fa-question"]{
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+	padding: 1px 4px 1px 3px;
+	margin-left:8px;
+	font-size: 10px;
+	background: #aaa;
+	color: #fff;
+	display: inline-block;
+	text-align: center;
+}
+
+.alert_placeholder {
+	width: 50%;
+	margin: 20px auto 10px;	
+}
+
+.modal .alert_placeholder,
+.alert_placeholder.full {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.alert_placeholder .fa-info, .alert .fa-info {
+	margin-right: 10px;
+}
+
+.alert_placeholder .alert-error .fa-info {
+	border-color: #b94a48;
+}
+
+.modal_alert_placeholder .fa-info, .alert .fa-info {
+	margin-right: 10px;
+}
+
+.modal_alert_placeholder .alert-error .fa-info {
+	border-color: #b94a48;
+}
+
+.alert-warning {
+	background-color: #fcf8e3;
+}
+
+.alert .fa-border {
+	border-color: #c09853;
+}
+
+.alert.alert-success .fa-border {
+	border-color: #468847;
+}
+
+.feedback { 
+	position: fixed; 
+	top: 48%; 
+	left:-52px;
+	z-index: 999;
+	transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg); 
+	-moz-transform: rotate(-90deg); 
+	-o-transform: rotate(-90deg); 
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.feedback a { 
+	display: block; 
+	background: #b94a48; 
+	padding: 8px 24px;
+	color: #fff; 
+	font-size: 20px; 
+	font-weight: bold; 
+	text-decoration: none; 
+	-webkit-border-radius: 0 0 8px 8px;
+	-moz-border-radius: 0 0 8px 8px;
+	border-radius: 0 0 8px 8px;
+}
+
+.feedback a:hover { 
+	background: #3a87ad; 
+	text-decoration:none;
+}
+
+.dl-popover {
+	margin-top: 10px;
+	min-width: 300px;
+}
+
+
+.dl-popover dt {
+	width: 100px;
+	padding: 2px 0;
+}
+
+.dl-popover dd {
+	margin-left: 130px;
+}
+
+select[name=DataTables_Table_0_length],
+select[name=DataTables_Table_1_length],
+select[name=DataTables_Table_2_length],
+select[name=DataTables_Table_3_length],
+select[name=DataTables_Table_4_length] {
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+select[name=DataTables_Table_0_length]:focus,
+select[name=DataTables_Table_1_length]:focus,
+select[name=DataTables_Table_2_length]:focus,
+select[name=DataTables_Table_3_length]:focus,
+select[name=DataTables_Table_4_length]:focus {
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+#sitewide-banner {
+    margin: 20px;
+}

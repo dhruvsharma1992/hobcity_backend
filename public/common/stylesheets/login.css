@@ -1,0 +1,19 @@
+.thumbnail {
+   height:50%; 
+}
+
+.thumbnail > img {
+	width:500px;
+	height:200px;
+	-webkit-box-shadow: 1px 1px 10px 2px #ccc;
+	-moz-box-shadow:    1px 1px 10px 2px #ccc; 
+	box-shadow:         1px 1px 10px 2px #ccc;
+}
+
+.thumbnail > .caption > p:nth-child(1){
+	text-align:justify;
+	height : 40%
+}
+.thumbnail > .caption > p:nth-child(2){ 
+	height : 10%
+} 
