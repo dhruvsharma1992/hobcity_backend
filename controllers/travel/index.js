@@ -6,16 +6,16 @@ module.exports = function (router) {
                'text':'Welcome to travel@hobcity' 
         });        
     });
-    router.get('/save',function(req,res){        
+    router.get('/save/:productName/:price/:userName',function(req,res){        
         res.send(businessLayer.postToDB())
     })
     router.get('/get',function(req,res){
-        businessLayer.queryFromDB().then(function(users){
-             res.send(users)
+        businessLayer.queryFromDB(function(err,products){
+            
+            res.send(products)//f
         })
-        //var users = businessLayer.queryFromDB()
-        //console.log('businessLayer.queryFromDB()')
-        //console.log(users)
-        //res.send(users)
+        //.then(function(products){
+        //     res.send(products)
+        //})
     })
 };
