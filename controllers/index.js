@@ -6,12 +6,52 @@ module.exports = function (router) {
         res.render( 'common/pages/index',{
         });        
     });
-    router.get('/save/:userName',function(req,res){        
-        res.send(businessLayer.postToDB(req.params.productName,req.params.price,req.params.userName))
+    router.post('/users/authenticate/',function(req,res){        
+            businessLayer.createNewUser(req.body,function(err,user){
+                if (err) {
+                    res.statusCode = 400
+                    res.send({
+                        'message':err,
+                        'name':'Error'
+                    })
+                }
+                else{
+                    res.send({
+                        'details':user,
+                        'name':'OK'
+                    })
+                }
+            })
+       
     })
     router.get('/get',function(req,res){
-        businessLayer.queryFromDB().then(function(users){
-             res.send(users)
+        console.log(req.headers)
+        businessLayer.checkAuthKey(req.headers,function(err,user){
+             //console.log("err "+err)
+             if(err){
+                console.log("err "+err)
+                res.statusCode = 400
+                res.send({
+                    'message':err,
+                    'name':'Error'
+                })
+             }
+             else{
+                //console.log("no err")
+                businessLayer.queryFromDB( function(err,users){
+                     if (err) {
+                        res.statusCode = 400
+                        res.send({
+                            'message':err,
+                            'name':'Error'
+                        })
+                    }
+                     res.send({
+                        'details':users,
+                        'name':'OK'
+                    })
+                })
+            }
         })
     })
     

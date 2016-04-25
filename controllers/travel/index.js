@@ -6,8 +6,8 @@ module.exports = function (router) {
                'text':'Welcome to travel@hobcity' 
         });        
     });
-    router.get('/save/:productName/:price/:userName',function(req,res){        
-        res.send(businessLayer.postToDB())
+    router.post('/save/:productName/:price/:userName',function(req,res){        
+        res.send(businessLayer.postToDB(req.params.productName,req.params.price,req.params.userName))
     })
     router.get('/get',function(req,res){
         businessLayer.queryFromDB(function(err,products){
