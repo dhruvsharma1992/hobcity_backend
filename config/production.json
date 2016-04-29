@@ -2,8 +2,9 @@
     
     
     "databaseConfig": {
-        "host": "localhost",
-        "database": "hobcity"
+        "host": "mongodbhobcity.cloudapp.net",
+        "database": "hobcity-dev",
+        "port":"27018"
     },
     "middleware": {
 
@@ -22,6 +23,20 @@
                             "module": "construx-copier",
                             "files": "**/*"
                         }
+                    }
+                ]
+            }
+        },
+        "appsec": {
+            "priority": 110,
+            "module": {
+                "name": "lusca",
+                "arguments": [
+                    {
+                        "csrf": false,
+                        "xframe": "SAMEORIGIN",
+                        "p3p": false,
+                        "csp": false
                     }
                 ]
             }
