@@ -1,31 +1,25 @@
 'use strict';
 
 var mongoose = require('mongoose');
-
-var productModel = function () { 
-    var schema = mongoose.Schema({
+var positionSchema = {
+        lat: Number,
+        lng: Number,
+        timestamp: Number
+}
+var tripSchema = {
+        authKey:String,
         name: String,
-        price: Number,
-        boughtBy: {
-            type:mongoose.Schema.ObjectId,
-            ref: 'User'
-        }
-    });
-    
-    schema.methods.toDAO = function(callback){
-
-        var promise = this.populate('boughtBy').execPopulate()
-        promise.then(function(daos){
-            console.log('daos')
-            console.log(daos)
-            callback()           
-        })
-        return promise
+        createDate: Number,
+        positions: [positionSchema]
+}
+var tripModel = function () { 
+    var schema = mongoose.Schema(tripSchema);
+    schema.methods.getDomainSchema = function(){
+        return tripSchema
     }
-    return mongoose.model('Product', schema);
+    return mongoose.model('Trip', tripSchema);
 };
 
-
 module.exports = {
-    product: new productModel()
+    trip: new tripModel()
 }

@@ -1,58 +1,73 @@
 var dto = require('./dto')
-var commonDto = require('./../../businessLayer/dto')
-var async = require( 'async')
 module.exports = {
-    postToDB :  function(pName,price ,userName){
-               
-        commonDto.user.findOne({'name':userName }).exec().then( function(user){
-            console.log('user')
-            console.log(user)
-            var product = new dto.product({'name':pName,'price': price})
-            console.log(product)
-            product.boughtBy = user 
-            product.save(function(err){
+    createTrip :  function(authKey,body ,next){
+        if (body.hasOwnProperty('name')) {
+            var trip = new dto.trip()
+            trip['authKey'] = authKey
+            trip['name'] = body['name']
+            trip['createDate'] = (new Date()).valueOf()
+            trip['positions'] = []
+            //console.log(user)
+            var globalDTO = trip
+            trip.save(function(err){
                 if(err) {
                   console.log('save error', err);
-                  return err
+                  next(err,null)
                 }
-                console.log('product saved')
-             })  
-        })        
-                     
-        return 'success'
-    },    
-    queryFromDB: function(callback){
-        dto.product.find({},function(err,products){
-            async.eachSeries(products,
-                    function(product, eachCallback){
-                        product.toDAO().then(function (dao){
-                          product = dao
-                          eachCallback();
-                        })
-                    },
-                    function(err){
-                        console.log('products');
-                        console.log(products)
-                        callback(null,products)
+                else
+                    next(null,globalDTO)
+            }) 
+        }
+        
+        else{
+             next("Empty Body",null)
+        }        
+    } ,
+    addLatLng :  function(tripId,body ,next){
+        if (body.hasOwnProperty('lat') && body.hasOwnProperty('lng')) {
+            dto.trip.findById( tripId,function(err,trip){
+                if (err) {
+                    next(err ,null)
+                }
+                else{
+                    //console.log(user)
+                    if (trip == null) {
+                        //console.log("unable to authenticate")
+                        next("unable to find trip",null)
                     }
-            )
-            //callback()
-        })           
-
-    },
-     queryFromDB2: function(){
-        console.log('entering queryFromDB')
-        var promise = dto.product.find({}).exec()//e
-        promise.then(function(products){
-             products.forEach(function(product) {
-                console.log('before then')
-                return product.toDAO()
-                    .then(function(dao){
-                        console.log('dao logic')
-                        product = dao
-                    })
-             })
-        })
-        return promise
-    }
+                    else{
+                        trip.positions.push({
+                            lat: body.lat,
+                            lng: body.lng,
+                            timestamp: (new Date()).valueOf()
+                        })
+                        var globalDTO = trip
+                        trip.save(function(err){
+                            if(err) {
+                              console.log('save error', err);
+                              next(err,null)
+                            }
+                            else
+                                next(null,trip)
+                        }) 
+                    }
+                }
+            })
+                
+        }        
+        else{
+             next("Lat Lng not given",null)
+        }        
+    } 
+    
+}
+var toDomainObject = function(obj,dtoObj){
+        var newObj = {}
+        //console.log(dtoObj)
+        console.log(dtoObj.schema)
+        var schema = (new dtoObj()).getDomainSchema()
+        for(var key in schema){
+            newObj[key]= obj[key]// newObj
+        }
+        return newObj
 }
