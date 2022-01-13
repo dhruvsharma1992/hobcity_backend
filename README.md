@@ -1,1 +1,2 @@
-# hobcity_backend
+# Hobcity
+A social network website for hobbies
